@@ -3,7 +3,7 @@
 <!-- Basic commands -->
 
 python -m django --version
-
+<li>
 django-admin startproject <project_name>
 python manage.py startapp <my_app>
 python manage.py runserver
@@ -11,7 +11,7 @@ python manage.py runserver
 python3 manage.py runserver # To run the server
 python3 manage.py makemigrations # To compile the migrations
 python3 manage.py migrate  # To migrate the changes in Database
-
+</li>
 <!-- Installation -->
 pip install djangorestframework
 pip install markdown 

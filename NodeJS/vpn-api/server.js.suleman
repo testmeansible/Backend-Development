@@ -1,0 +1,38 @@
+const express = require('express');
+const { exec } = require('child_process');
+const path = require('path');
+
+const app = express();
+const PORT = 3000;
+
+// First API: Call a Bash Script
+app.get('/run-script', (req, res) => {
+  exec('bash ./script.sh', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing script: ${error.message}`);
+      return res.status(500).send('Error running script');
+    }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return res.status(500).send('Script execution error');
+    }
+    console.log(`stdout: ${stdout}`);
+    res.send(`Script output: ${stdout}`);
+  });
+});
+
+// Second API: Download a file
+app.get('/download', (req, res) => {
+  const filePath = path.join(__dirname, 'static','ovpn-files', 'alice1.ovpn');
+  res.download(filePath, 'your-download.ovpn', (err) => {
+    if (err) {
+      console.error(`Error downloading file: ${err}`);
+      res.status(500).send('Error downloading file');
+    }
+  });
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

@@ -1,0 +1,9 @@
+{
+    "team1": {
+        "teamId": "1",
+        "next_ip": 8,
+        "members": {
+            "user1": "10.8.1.7"
+        }
+    }
+}
